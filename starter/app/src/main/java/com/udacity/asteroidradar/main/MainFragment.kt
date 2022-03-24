@@ -28,11 +28,6 @@ class MainFragment : Fragment() {
 
     lateinit var pictureOfDay : PictureOfDay
 
-    var count: Int = 0
-
-    lateinit var db : AsteroidsDatabase
-
-
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
@@ -48,7 +43,7 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         setRecyclerViewConfiguration(binding)
-        updateAllListenerBasedOnViewModel()
+        updateAllListenersBasedOnViewModel()
 
         setHasOptionsMenu(true)
         return binding.root
@@ -68,7 +63,7 @@ class MainFragment : Fragment() {
         recyclerView.adapter = MainAsteroidAdapter(MutableLiveData(emptyList()), requireContext())
     }
 
-    private fun updateAllListenerBasedOnViewModel(){
+    private fun updateAllListenersBasedOnViewModel(){
         viewModel.listOfAsteroids.observe(viewLifecycleOwner) {
             (recyclerView.adapter as MainAsteroidAdapter).insertAsteroids(it)
         }
