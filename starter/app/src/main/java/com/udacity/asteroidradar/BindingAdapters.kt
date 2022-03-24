@@ -1,8 +1,10 @@
 package com.udacity.asteroidradar
 
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MutableLiveData
 import com.squareup.picasso.Picasso
 
 
@@ -10,6 +12,7 @@ import com.squareup.picasso.Picasso
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
+    Log.v("TESTE_TESTE", "isHazardous = $isHazardous")
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
         imageView.contentDescription = R.string.content_dangerous_asteroids_image.toString()
@@ -46,7 +49,7 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
 }
 
-@BindingAdapter("imageUrl")
-fun setImageUrl(view: ImageView, url: String) {
-    Picasso.with(view.context).load(url).into(view)
-}
+//@BindingAdapter("bind:imageUrl")
+//fun setImageUrl(view: ImageView, pictureOfDay: MutableLiveData<PictureOfDay>) {
+//    Picasso.with(view.context).load(pictureOfDay.value!!.url).into(view)
+//}

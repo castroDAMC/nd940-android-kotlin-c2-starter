@@ -1,7 +1,8 @@
 package com.udacity.asteroidradar.persistence
 
 import android.content.Context
-import androidx.lifecycle.Transformations.map
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.udacity.asteroidradar.Asteroid
 
@@ -56,10 +57,10 @@ fun List<Asteroid>.asDAOModel(): List<AsteroidsDataBaseEntity>{
 @Dao
 interface AsteroidsDAO{
     @Query("SELECT * FROM asteroidsdatabaseentity")
-    fun getAll(): List<AsteroidsDataBaseEntity>
+    fun getAll(): LiveData<List<AsteroidsDataBaseEntity>>
 
     @Query("SELECT * FROM asteroidsdatabaseentity WHERE id=:id")
-    fun getAsteroidById(id: String): AsteroidsDataBaseEntity
+    fun getAsteroidById(id: String): LiveData<AsteroidsDataBaseEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOneAsteroid(asteroid: AsteroidsDataBaseEntity)

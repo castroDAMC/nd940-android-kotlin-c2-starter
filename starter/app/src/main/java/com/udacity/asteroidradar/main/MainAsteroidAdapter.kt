@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
@@ -33,24 +35,29 @@ class MainAsteroidAdapter(
 
     fun insertAsteroids(asteroid: List<Asteroid>){
         listOfAsteroids.value = asteroid
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val asteroidName: TextView = itemView.findViewById(R.id.txt_resume_asteroid_name)
         private val asteroidDate: TextView = itemView.findViewById(R.id.txt_resume_asteroid_date)
-
-        init {
-            itemView.setOnClickListener { doSomething() }
-        }
-
-        private fun doSomething() {
-            Toast.makeText(itemView.context,"CLICADO = " + asteroidName.text, Toast.LENGTH_LONG).show()
-        }
+        private val asteroidDangerous : ImageView = itemView.findViewById(R.id.img_is_hazardous)
 
         fun onBind(asteroid: Asteroid) {
             asteroidName.text = asteroid.codename
             asteroidDate.text = asteroid.closeApproachDate
+            asteroidDangerous.setImageResource(
+                when(asteroid.isPotentiallyHazardous){
+                    true -> R.drawable.ic_status_potentially_hazardous
+                    false -> R.drawable.ic_status_normal
+                }
+            )
+
+            itemView.setOnClickListener {
+                it.findNavController()
+                    .navigate(MainFragmentDirections.actionShowDetail(asteroid))
+            }
         }
     }
 }

@@ -17,27 +17,34 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
+            app:cardElevation="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:cardCornerRadius="10dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:alpha="120"
+                android:background="#B5100101"
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/txt_resume_asteroid_name"
-                    android:layout_width="339dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{asteroid.codename}"
+                    android:textColor="@color/default_text_color"
                     app:layout_constraintEnd_toStartOf="@+id/img_is_hazardous"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="@{asteroid.codename}"
                     tool:text="@string/tool_name_asteroid" />
 
                 <TextView
@@ -49,6 +56,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="@{asteroid.closeApproachDate}"
+                    android:textColor="@color/default_text_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/img_is_hazardous"
                     app:layout_constraintStart_toStartOf="parent"
@@ -61,11 +69,13 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/tool_is_hazardous"
+                    android:elevation="8dp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="w,1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tool:src="@drawable/ic_status_potentially_hazardous" />
+                    tool:src="@drawable/ic_status_normal" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
