@@ -60,10 +60,7 @@ fun setImageUrl(view: ImageView, imageUrl: String, imageStatus: Int) {
             view.setImageResource(R.drawable.loading_animation)
         }
         Constants.PICTURE_ERROR -> {
-            Picasso.get()
-                .load(R.drawable.ic_connection_error)
-                .fit()
-                .into(view)
+            view.setImageResource(R.drawable.ic_connection_error)
         }
     }
 
