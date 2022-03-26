@@ -1,18 +1,18 @@
 package com.udacity.asteroidradar
 
+import android.os.Build
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import com.squareup.picasso.Picasso
-
-
+import com.udacity.asteroidradar.main.MainViewModel
 
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
-    Log.v("TESTE_TESTE", "isHazardous = $isHazardous")
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
         imageView.contentDescription = R.string.content_dangerous_asteroids_image.toString()
@@ -49,7 +49,22 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
 }
 
-//@BindingAdapter("bind:imageUrl")
-//fun setImageUrl(view: ImageView, pictureOfDay: MutableLiveData<PictureOfDay>) {
-//    Picasso.with(view.context).load(pictureOfDay.value!!.url).into(view)
-//}
+@RequiresApi(Build.VERSION_CODES.N)
+@BindingAdapter("imageUrl", "imageStatus")
+fun setImageUrl(view: ImageView, imageUrl: String, imageStatus: Int) {
+    when (imageStatus) {
+        Constants.PICTURE_DONE -> {
+            Picasso.get().load(imageUrl).into(view)
+        }
+        Constants.PICTURE_LOADING -> {
+            Log.d("TEST_BINDING", "LOADING")
+        }
+        Constants.PICTURE_ERROR -> {
+            Picasso.get()
+                .load(R.drawable.asteroid_safe)
+                .fit()
+                .into(view)
+        }
+    }
+
+}

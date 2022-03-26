@@ -5,7 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.api.NasaAPI
+import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.persistence.AsteroidsRepository
 import com.udacity.asteroidradar.persistence.getAsteroidsDataBase
 import kotlinx.coroutines.launch
@@ -16,20 +16,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getAsteroidsDataBase(application)
     private val asteroidsRepository = AsteroidsRepository(database)
 
-    init {
-        viewModelScope.launch {
-            asteroidsRepository.refreshAsteroidsList()
-        }
-    }
+    val pictureOfDayStatus: MutableLiveData<Int> = asteroidsRepository.pictureOfDayStatus
 
     private val _listOfAsteroids: LiveData<List<Asteroid>> = asteroidsRepository.asteroidsList
-
     val listOfAsteroids: LiveData<List<Asteroid>>
         get() = _listOfAsteroids
 
-    val _pictureOfDay: MutableLiveData<String> = MutableLiveData()
-    val pictureOfDay: MutableLiveData<String>
+    private var _pictureOfDay: MutableLiveData<PictureOfDay> = asteroidsRepository.pictureOfDay
+    val pictureOfDay: MutableLiveData<PictureOfDay>
         get() = _pictureOfDay
+
+    init {
+        viewModelScope.launch {
+            asteroidsRepository.refreshAsteroidsList()
+            asteroidsRepository.refreshPicturesOfTheDay()
+        }
+    }
+
+
 
 
 }

@@ -1,11 +1,7 @@
 package com.udacity.asteroidradar.main
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
@@ -13,11 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.AsteroidListItemBinding
-import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainAsteroidAdapter(
-    private val listOfAsteroids: MutableLiveData<List<Asteroid>>,
-    private val context: Context
+    private val listOfAsteroids: MutableLiveData<List<Asteroid>>
 ) : RecyclerView.Adapter<MainAsteroidAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

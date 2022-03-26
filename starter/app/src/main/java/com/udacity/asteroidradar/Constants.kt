@@ -6,4 +6,8 @@ object Constants {
     const val BASE_URL = "https://api.nasa.gov/"
 
     const val API_KEY = "HpVHKF9LLtZJlec1ExEXFQFe2pLVyXN0dlXjXVKA"
+
+    const val PICTURE_DONE = 2
+    const val PICTURE_LOADING = 1
+    const val PICTURE_ERROR = 0
 }

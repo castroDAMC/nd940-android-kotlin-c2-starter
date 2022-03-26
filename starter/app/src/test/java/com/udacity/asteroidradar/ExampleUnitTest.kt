@@ -1,5 +1,10 @@
 package com.udacity.asteroidradar
 
+import com.udacity.asteroidradar.api.NasaAPI
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import org.junit.Assert
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -10,8 +15,12 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testReturnPictureOfTheDay(){
+        runBlocking {
+            val status = NasaAPI.retrofitService.getImageOfTheDay(Constants.API_KEY)
+            assertTrue( status is PictureOfDay)
+        }
     }
 }

@@ -27,6 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
+                app:imageUrl="@{viewModel.pictureOfDay.url}"
+                app:imageStatus="@{viewModel.pictureOfDayStatus}"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/placeholder_picture_of_day"/>
 
