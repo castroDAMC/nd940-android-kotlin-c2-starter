@@ -57,11 +57,11 @@ fun setImageUrl(view: ImageView, imageUrl: String, imageStatus: Int) {
             Picasso.get().load(imageUrl).into(view)
         }
         Constants.PICTURE_LOADING -> {
-            Log.d("TEST_BINDING", "LOADING")
+            view.setImageResource(R.drawable.loading_animation)
         }
         Constants.PICTURE_ERROR -> {
             Picasso.get()
-                .load(R.drawable.asteroid_safe)
+                .load(R.drawable.ic_connection_error)
                 .fit()
                 .into(view)
         }
