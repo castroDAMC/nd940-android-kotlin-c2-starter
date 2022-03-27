@@ -18,8 +18,6 @@ class MainFragment : Fragment() {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
-    private lateinit var recyclerView: RecyclerView
-
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -45,13 +43,12 @@ class MainFragment : Fragment() {
     }
 
     private fun setRecyclerViewConfiguration(binding: FragmentMainBinding){
-        recyclerView = binding.asteroidRecycler
-        recyclerView.adapter = MainAsteroidAdapter(MutableLiveData(emptyList()))
+        binding.asteroidRecycler.adapter = MainAsteroidAdapter(MutableLiveData(emptyList()))
     }
 
     private fun updateAllListenersBasedOnViewModel(binding: FragmentMainBinding){
         viewModel.listOfAsteroids.observe(viewLifecycleOwner) {
-            (recyclerView.adapter as MainAsteroidAdapter).insertAsteroids(it)
+            (binding.asteroidRecycler.adapter as MainAsteroidAdapter).insertAsteroids(it)
             binding.statusLoadingWheel.visibility = when(viewModel.listOfAsteroids.value.isNullOrEmpty()){
                 true -> View.VISIBLE
                 false -> View.GONE
