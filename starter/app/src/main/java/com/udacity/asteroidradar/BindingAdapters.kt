@@ -13,21 +13,26 @@ import com.udacity.asteroidradar.main.MainViewModel
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
+    val context = imageView.context
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
-        imageView.contentDescription = R.string.content_dangerous_asteroids_image.toString()
+        imageView.contentDescription =
+            context.getString(R.string.content_dangerous_asteroids_image_item)
     } else {
         imageView.setImageResource(R.drawable.ic_status_normal)
-        imageView.contentDescription = R.string.content_safe_asteroids_image.toString()
+        imageView.contentDescription = context.getString(R.string.content_safe_asteroids_image_item)
     }
 }
 
 @BindingAdapter("asteroidStatusImage")
 fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
+    val context = imageView.context
     if (isHazardous) {
         imageView.setImageResource(R.drawable.asteroid_hazardous)
+        imageView.contentDescription = context.getString(R.string.content_dangerous_asteroids_image)
     } else {
         imageView.setImageResource(R.drawable.asteroid_safe)
+        imageView.contentDescription = context.getString(R.string.content_safe_asteroids_image)
     }
 }
 
@@ -35,6 +40,7 @@ fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
 fun bindTextViewToAstronomicalUnit(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(R.string.astronomical_unit_format), number)
+    textView.contentDescription = textView.context.getString(R.string.astronomica_unit_explanation)
 }
 
 @BindingAdapter("kmUnitText")
@@ -52,20 +58,22 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 @RequiresApi(Build.VERSION_CODES.N)
 @BindingAdapter("pictureOfDay", "imageStatus")
 fun setImageUrl(view: ImageView, pictureOfDay: PictureOfDay, imageStatus: Int) {
+
+    val context = view.context
+
     when (imageStatus) {
         Constants.PICTURE_DONE -> {
-            Log.v("TEST_DESCRIPTION",pictureOfDay.title)
             Picasso.get().load(pictureOfDay.url).into(view)
-            view.contentDescription = view.context.getString(R.string.init_image_of_day) + pictureOfDay.title
-            Log.v("TEST_DESCRIPTION",view.contentDescription.toString())
+            view.contentDescription =
+                context.getString(R.string.init_image_of_day) + pictureOfDay.title
         }
         Constants.PICTURE_LOADING -> {
             view.setImageResource(R.drawable.loading_animation)
-            view.contentDescription = R.string.loading_picture_of_day.toString()
+            view.contentDescription = context.getString(R.string.loading_picture_of_day)
         }
         Constants.PICTURE_ERROR -> {
             view.setImageResource(R.drawable.ic_connection_error)
-            view.contentDescription = R.string.error_picture_of_day.toString()
+            view.contentDescription = context.getString(R.string.error_picture_of_day)
         }
     }
 

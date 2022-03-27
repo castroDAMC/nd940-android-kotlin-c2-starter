@@ -42,6 +42,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/close_approach_data_title"
                     android:orientation="vertical">
 
                     <TextView
@@ -65,6 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
+                    android:contentDescription="@string/absolute_magnitude_title"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -94,6 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
+                        android:contentDescription="@string/help_to_understand_what_is_au_absilute_magnitude"
                         app:srcCompat="@drawable/ic_help_circle" />
 
                 </LinearLayout>
