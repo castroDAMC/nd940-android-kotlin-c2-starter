@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
         setRecyclerViewConfiguration(binding)
-        updateAllListenersBasedOnViewModel()
+        updateAllListenersBasedOnViewModel(binding)
 
         setHasOptionsMenu(true)
         return binding.root
@@ -49,9 +49,13 @@ class MainFragment : Fragment() {
         recyclerView.adapter = MainAsteroidAdapter(MutableLiveData(emptyList()))
     }
 
-    private fun updateAllListenersBasedOnViewModel(){
+    private fun updateAllListenersBasedOnViewModel(binding: FragmentMainBinding){
         viewModel.listOfAsteroids.observe(viewLifecycleOwner) {
             (recyclerView.adapter as MainAsteroidAdapter).insertAsteroids(it)
+            binding.statusLoadingWheel.visibility = when(viewModel.listOfAsteroids.value.isNullOrEmpty()){
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
         }
     }
 
