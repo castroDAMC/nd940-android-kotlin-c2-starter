@@ -24,4 +24,7 @@
     <string name="tool_is_hazardous">TODO</string>
     <string name="content_dangerous_asteroids_image">DANGEROUS</string>
     <string name="content_safe_asteroids_image">SAFE</string>
+    <string name="loading_picture_of_day">Loading Picture of the day</string>
+    <string name="error_picture_of_day">Error to display picture of the day. Usually, this apps provides a different picture each day. This error may be some network issue</string>
+    <string name="init_image_of_day">Image of the day is </string>
 </resources>

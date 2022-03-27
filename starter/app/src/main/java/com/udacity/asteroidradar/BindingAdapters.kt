@@ -50,17 +50,22 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 }
 
 @RequiresApi(Build.VERSION_CODES.N)
-@BindingAdapter("imageUrl", "imageStatus")
-fun setImageUrl(view: ImageView, imageUrl: String, imageStatus: Int) {
+@BindingAdapter("pictureOfDay", "imageStatus")
+fun setImageUrl(view: ImageView, pictureOfDay: PictureOfDay, imageStatus: Int) {
     when (imageStatus) {
         Constants.PICTURE_DONE -> {
-            Picasso.get().load(imageUrl).into(view)
+            Log.v("TEST_DESCRIPTION",pictureOfDay.title)
+            Picasso.get().load(pictureOfDay.url).into(view)
+            view.contentDescription = view.context.getString(R.string.init_image_of_day) + pictureOfDay.title
+            Log.v("TEST_DESCRIPTION",view.contentDescription.toString())
         }
         Constants.PICTURE_LOADING -> {
             view.setImageResource(R.drawable.loading_animation)
+            view.contentDescription = R.string.loading_picture_of_day.toString()
         }
         Constants.PICTURE_ERROR -> {
             view.setImageResource(R.drawable.ic_connection_error)
+            view.contentDescription = R.string.error_picture_of_day.toString()
         }
     }
 
