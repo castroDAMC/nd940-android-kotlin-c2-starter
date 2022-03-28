@@ -78,3 +78,15 @@ fun setImageUrl(view: ImageView, pictureOfDay: PictureOfDay, imageStatus: Int) {
     }
 
 }
+
+@BindingAdapter("setCodeName")
+fun setCodeName(view: TextView, codeName: String){
+    val context = view.context
+    view.text = String.format(context.getString(R.string.item_codename), codeName)
+}
+
+@BindingAdapter("setApproachDate")
+fun setApproachDate(view: TextView, setApproachDate: String){
+    val context = view.context
+    view.text = String.format(context.getString(R.string.item_approachdate), setApproachDate)
+}

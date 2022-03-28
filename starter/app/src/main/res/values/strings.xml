@@ -30,4 +30,6 @@
     <string name="content_dangerous_asteroids_image_item">Red face, not smiling, indicating that could be a dangerous asteroid</string>
     <string name="content_safe_asteroids_image_item">White smiley face. This indicates a not dangerous asteroid.</string>
     <string name="help_to_understand_what_is_au_absilute_magnitude">Help to understand what is au (Absilute Magnitude)</string>
+    <string name="item_codename">Codename: %s</string>
+    <string name="item_approachdate">Estimated approach date: %s</string>
 </resources>
