@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.AsteroidListItemBinding
 
 class MainAsteroidAdapter(
-    private val listOfAsteroids: MutableLiveData<List<Asteroid>>
+    private val listOfAsteroids: MutableLiveData<List<Asteroid>>,
+    private val onClickListener: (asteroid: Asteroid) -> Unit
 ) : RecyclerView.Adapter<MainAsteroidAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,7 +23,8 @@ class MainAsteroidAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(listOfAsteroids.value!![position])
+        val asteroid = listOfAsteroids.value!![position]
+        holder.onBind(asteroid, onClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -35,16 +36,13 @@ class MainAsteroidAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(private val binding: AsteroidListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: AsteroidListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(asteroid: Asteroid) {
+        fun onBind(asteroid: Asteroid, onClickListener: (asteroid: Asteroid) -> Unit) {
             binding.asteroid = asteroid
             binding.executePendingBindings()
-
-            itemView.setOnClickListener {
-                it.findNavController()
-                    .navigate(MainFragmentDirections.actionShowDetail(asteroid))
-            }
+            itemView.setOnClickListener { onClickListener(asteroid) }
         }
     }
 }

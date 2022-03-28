@@ -16,7 +16,6 @@ class AsteroidWorkManager : Application() {
         startWorkers()
     }
 
-
     private fun startWorkers(){
         applicationScope.launch {
             setupWorkerInBackground()

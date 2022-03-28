@@ -22,7 +22,6 @@ class AsteroidWorker(appContext: Context, params: WorkerParameters) :
         val database = getAsteroidsDataBase(applicationContext)
         val repository = AsteroidsRepository(database)
         return try {
-            repository.refreshAsteroidsList()
             repository.deleteOldAsteroids()
             repository.refreshAsteroidsList()
             Result.success()

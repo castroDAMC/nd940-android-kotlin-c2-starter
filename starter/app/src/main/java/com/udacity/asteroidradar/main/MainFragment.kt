@@ -7,6 +7,8 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.api.getNextSevenDays
 import com.udacity.asteroidradar.api.getToday
@@ -49,7 +51,7 @@ class MainFragment : Fragment() {
 
         (binding.asteroidRecycler.adapter as MainAsteroidAdapter).insertAsteroids(
             viewModel.listOfAsteroids.value!!.filter {
-                when(item.itemId){
+                when (item.itemId) {
                     R.id.show_today_asteroids -> it.closeApproachDate == getToday()
                     R.id.show_week_asteroids -> dateList.contains(it.closeApproachDate)
                     else -> true //Only happens when item.itemId is R.id.show_saved_asteroids
@@ -61,7 +63,11 @@ class MainFragment : Fragment() {
 
 
     private fun setRecyclerViewConfiguration() {
-        binding.asteroidRecycler.adapter = MainAsteroidAdapter(MutableLiveData(emptyList()))
+        binding.asteroidRecycler.adapter =
+            MainAsteroidAdapter(
+                MutableLiveData(emptyList()),
+                {setClickItemFunction(it)}
+            )
     }
 
     private fun updateAllListenersBasedOnViewModel() {
@@ -73,6 +79,11 @@ class MainFragment : Fragment() {
                     false -> View.GONE
                 }
         }
+    }
+
+    private fun setClickItemFunction(asteroid: Asteroid) {
+        findNavController()
+            .navigate(MainFragmentDirections.actionShowDetail(asteroid))
     }
 
 }
