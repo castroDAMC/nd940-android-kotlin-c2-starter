@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.main
 
 import android.app.Application
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
@@ -12,13 +13,13 @@ import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.N)
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-
     private val database = getAsteroidsDataBase(application)
     private val asteroidsRepository = AsteroidsRepository(database)
 
     val pictureOfDayStatus: MutableLiveData<Int> = asteroidsRepository.pictureOfDayStatus
 
-    private val _listOfAsteroids: LiveData<List<Asteroid>> = asteroidsRepository.asteroidsList
+    private val _listOfAsteroids: MutableLiveData<List<Asteroid>> =
+        asteroidsRepository.asteroidsList as MutableLiveData<List<Asteroid>>
     val listOfAsteroids: LiveData<List<Asteroid>>
         get() = _listOfAsteroids
 
@@ -32,8 +33,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             asteroidsRepository.refreshPicturesOfTheDay()
         }
     }
-
-
-
 
 }
