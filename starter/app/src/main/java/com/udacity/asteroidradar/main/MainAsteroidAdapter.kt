@@ -39,6 +39,7 @@ class MainAsteroidAdapter(
 
         fun onBind(asteroid: Asteroid) {
             binding.asteroid = asteroid
+            binding.executePendingBindings()
 
             itemView.setOnClickListener {
                 it.findNavController()

@@ -10,6 +10,7 @@ import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.NasaAPI
+import com.udacity.asteroidradar.api.getToday
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -40,6 +41,12 @@ class AsteroidsRepository(private val database: AsteroidsDatabase) {
                 Log.e("AsteroidsRepository", e.toString())
             }
 
+        }
+    }
+
+    suspend fun deleteOldAsteroids(){
+        withContext(Dispatchers.IO){
+            database.userDao().deleteOldAsteroids(getToday())
         }
     }
 

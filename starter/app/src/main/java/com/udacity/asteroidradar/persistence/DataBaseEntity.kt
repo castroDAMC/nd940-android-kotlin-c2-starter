@@ -67,6 +67,9 @@ interface AsteroidsDAO{
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAsteroidsInBatch(vararg asteroid: AsteroidsDataBaseEntity)
+
+    @Query("DELETE FROM asteroidsdatabaseentity WHERE approach_date<:today")
+    fun deleteOldAsteroids(today: String)
 }
 
 private lateinit var instanceOfAsteroidsDatabase: AsteroidsDatabase

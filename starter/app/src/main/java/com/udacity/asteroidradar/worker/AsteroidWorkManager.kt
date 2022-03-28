@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.worker
 
 import android.app.Application
 import android.os.Build
+import android.util.Log
 import androidx.work.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,18 +15,18 @@ class AsteroidWorkManager : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        delayedInit()
+        startWorkers()
     }
 
 
-    private fun delayedInit(){
+    private fun startWorkers(){
         applicationScope.launch {
-            setupRecurringWork()
+            setupWorkerInBackground()
         }
     }
 }
 
-private fun setupRecurringWork(){
+private fun setupWorkerInBackground(){
     val constraint= Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
         .setRequiresCharging(true)
         .apply {
