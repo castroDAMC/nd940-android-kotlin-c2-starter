@@ -24,6 +24,7 @@ class AsteroidWorker(appContext: Context, params: WorkerParameters) :
         return try {
             repository.refreshAsteroidsList()
             repository.deleteOldAsteroids()
+            repository.refreshAsteroidsList()
             Result.success()
         } catch (e: HttpException) {
             Result.retry()
