@@ -47,21 +47,15 @@ class MainFragment : Fragment() {
 
         val dateList = getNextSevenDays()
 
-        when (item.itemId) {
-            R.id.show_today_asteroids -> (binding.asteroidRecycler.adapter as MainAsteroidAdapter).insertAsteroids(
-                viewModel.listOfAsteroids.value!!.filter {
-                    it.closeApproachDate == getToday()
+        (binding.asteroidRecycler.adapter as MainAsteroidAdapter).insertAsteroids(
+            viewModel.listOfAsteroids.value!!.filter {
+                when(item.itemId){
+                    R.id.show_today_asteroids -> it.closeApproachDate == getToday()
+                    R.id.show_week_asteroids -> dateList.contains(it.closeApproachDate)
+                    else -> true //Only happens when item.itemId is R.id.show_saved_asteroids
                 }
-            )
-            R.id.show_week_asteroids -> (binding.asteroidRecycler.adapter as MainAsteroidAdapter).insertAsteroids(
-                viewModel.listOfAsteroids.value!!.filter {
-                    dateList.contains(it.closeApproachDate)
-                }
-            )
-            R.id.show_saved_asteroids -> (binding.asteroidRecycler.adapter as MainAsteroidAdapter).insertAsteroids(
-                viewModel.listOfAsteroids.value!!
-            )
-        }
+            }
+        )
         return true
     }
 

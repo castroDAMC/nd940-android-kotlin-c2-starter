@@ -68,7 +68,6 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     return formattedDateList
 }
 
-
 @SuppressLint("NewApi")
 fun getToday(): String {
     return getNextSevenDaysFormattedDates()[0]
