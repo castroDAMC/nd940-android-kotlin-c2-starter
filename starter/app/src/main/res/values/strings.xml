@@ -20,16 +20,19 @@
     <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">This is NASA\'s picture of day, showing nothing yet</string>
     <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
     <string name="tool_name_asteroid">txt_resume_asteroid_name</string>
+    <string name="tool_name_description">Asteroid Codename is %s</string>
     <string name="tool_date_asteroid">txt_resume_asteroid_date</string>
+    <string name="tool_date_description">Asteroid approach date is %s</string>
     <string name="tool_is_hazardous">TODO</string>
     <string name="content_dangerous_asteroids_image">Image of a not friendly asteroid. This asteroid have a angry face and flames through his body, and are coming to earth</string>
     <string name="content_safe_asteroids_image">Image of a friendly asteroid. This asteroid has a smiley on her face, is blinking right eye </string>
     <string name="loading_picture_of_day">Loading Picture of the day</string>
     <string name="error_picture_of_day">Error to display picture of the day. Usually, this apps provides a different picture each day. This error may be some network issue</string>
-    <string name="init_image_of_day">Image of the day is: </string>
+    <string name="init_image_of_day">Image of the day is: %s</string>
     <string name="content_dangerous_asteroids_image_item">Red face, not smiling, indicating that could be a dangerous asteroid</string>
     <string name="content_safe_asteroids_image_item">White smiley face. This indicates a not dangerous asteroid.</string>
-    <string name="help_to_understand_what_is_au_absilute_magnitude">Help to understand what is au (Absilute Magnitude)</string>
+    <string name="help_to_understand_what_is_au_absolute_magnitude">Help to understand what is au (Absolute Magnitude)</string>
     <string name="item_codename">Codename: %s</string>
     <string name="item_approachdate">Estimated approach date: %s</string>
+    <string name="card_view_content_init">Information\'s about asteroid %s</string>
 </resources>

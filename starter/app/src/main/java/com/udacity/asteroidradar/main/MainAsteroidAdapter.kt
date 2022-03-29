@@ -42,6 +42,10 @@ class MainAsteroidAdapter(
         fun onBind(asteroid: Asteroid, onClickListener: (asteroid: Asteroid) -> Unit) {
             binding.asteroid = asteroid
             binding.executePendingBindings()
+
+            binding.txtResumeAsteroidName.contentDescription = String.format(itemView.context.getString(R.string.tool_name_description), asteroid.codename)
+            binding.txtResumeAsteroidDate.contentDescription = String.format(itemView.context.getString(R.string.tool_date_description), asteroid.closeApproachDate)
+
             itemView.setOnClickListener { onClickListener(asteroid) }
         }
     }

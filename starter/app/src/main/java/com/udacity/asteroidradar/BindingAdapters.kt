@@ -1,14 +1,12 @@
 package com.udacity.asteroidradar
 
 import android.os.Build
-import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import com.squareup.picasso.Picasso
-import com.udacity.asteroidradar.main.MainViewModel
 
 
 @BindingAdapter("statusIcon")
@@ -65,7 +63,7 @@ fun setImageUrl(view: ImageView, pictureOfDay: PictureOfDay, imageStatus: Int) {
         Constants.PICTURE_DONE -> {
             Picasso.get().load(pictureOfDay.url).into(view)
             view.contentDescription =
-                context.getString(R.string.init_image_of_day) + pictureOfDay.title
+                String.format(context.getString(R.string.init_image_of_day), pictureOfDay.title)
         }
         Constants.PICTURE_LOADING -> {
             view.setImageResource(R.drawable.loading_animation)
@@ -89,4 +87,10 @@ fun setCodeName(view: TextView, codeName: String){
 fun setApproachDate(view: TextView, setApproachDate: String){
     val context = view.context
     view.text = String.format(context.getString(R.string.item_approachdate), setApproachDate)
+}
+
+@BindingAdapter("setContentDescriptionToCardView")
+fun insertContentDescription(view: View, asteroid: Asteroid){
+    val context = view.context
+    view.contentDescription = String.format(context.getString(R.string.card_view_content_init), asteroid.codename)
 }
