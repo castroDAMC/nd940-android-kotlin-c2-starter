@@ -5,7 +5,7 @@ object Constants {
     const val DEFAULT_END_DATE_DAYS = 7
     const val BASE_URL = "https://api.nasa.gov/"
 
-    const val API_KEY = "HpVHKF9LLtZJlec1ExEXFQFe2pLVyXN0dlXjXVKA"
+    const val API_KEY = "INSERT API KEY HERE"
 
     const val PICTURE_DONE = 2
     const val PICTURE_LOADING = 1
